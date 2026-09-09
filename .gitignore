@@ -1,0 +1,29 @@
+.gradle/
+.idea/
+build/
+out/
+version.txt
+*.log
+
+# Mac
+.DS_Store
+
+/status-lists/cbor/*
+/status-lists/cwt/*
+/status-lists/json/*
+/status-lists/jwt/*
+/status-lists/*.metadata
+
+# Buildpacks
+buildCache/
+launchCache/
+
+# helm
+Chart.lock
+*.tgz
+
+# maven
+target/
+*.jar
+
+!lib/mdoc-core-jvm-0.22.1.jar

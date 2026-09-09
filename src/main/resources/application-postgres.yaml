@@ -1,0 +1,15 @@
+#
+# Copyright 2024-2026 Bundesdruckerei GmbH
+# For the license see the accompanying file LICENSE.MD.
+#
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.data.redis.autoconfigure.DataRedisAutoConfiguration
+  datasource:
+    url: <DB_URL>
+    username: <DB_USERNAME>
+    password: <DB_PASSWORD>
+    driverClassName: org.postgresql.Driver
+app:
+  storage-type: postgres

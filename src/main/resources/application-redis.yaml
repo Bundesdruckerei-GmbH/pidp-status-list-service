@@ -1,0 +1,13 @@
+#
+# Copyright 2024-2026 Bundesdruckerei GmbH
+# For the license see the accompanying file LICENSE.MD.
+#
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+app:
+  storage-type: redis
+  redis:
+    host: localhost
+    persistence-strategy: append-fsync-always

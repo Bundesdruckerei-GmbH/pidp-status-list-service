@@ -1,0 +1,38 @@
+#
+# Copyright 2024-2026 Bundesdruckerei GmbH
+# For the license see the accompanying file LICENSE.MD.
+#
+
+logging:
+  level:
+    de.bdr.statuslist: trace
+
+server:
+  port: 8085
+  internal-api-port: ${server.port}
+  internal-api-prefixes: /pools, /status-lists
+
+app:
+  public-url: http://localhost:8085
+  storage-directory: status-lists
+  cache-duration: PT24H
+  status-list-pools:
+    pidp:
+      api-key: <API_KEY>
+      issuer: http://localhost:8080
+      size: 128
+      bits: 1
+      final-status: 1
+      precreation:
+        lists: 1
+        check-delay: 10s
+      prefetch:
+        threshold: 16
+        capacity: 32
+        on-underflow: delay
+      update-interval: 10s
+      list-lifetime: 15s
+      signer:
+        pkcs12:
+          keystore: <PATH>
+          password: <PASSWORD>

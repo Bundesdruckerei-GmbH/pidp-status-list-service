@@ -1,0 +1,102 @@
+#
+# Copyright 2024-2026 Bundesdruckerei GmbH
+# For the license see the accompanying file LICENSE.MD.
+#
+
+######################################
+#
+# THIS IS THE TEST APPLICATION YAML!!!!!!!!!!!!!!
+#
+#######################################
+
+server:
+  port: 8085
+
+app:
+  public-url: http://localhost:8085
+  storage-directory: status-lists
+  cache-duration: PT24H
+  status-list-pools:
+    verified-email:
+      api-key: 9a4cf395-25d6-4a82-8303-4b28a66cef20
+      issuer: http://localhost:8080
+      size: 128
+      bits: 1
+      precreation:
+        lists: 1
+        check-delay: 10s
+      prefetch:
+        threshold: 2
+        capacity: 4
+        on-underflow: delay
+      update-interval: 3s
+      list-lifetime: 15s
+      signer:
+        pkcs12:
+          keystore: <PATH>
+          password: <PASSWORD>
+    subscriptions-email:
+      api-key: 9a4cf395-25d6-4a82-8303-4b28a66cef20
+      issuer: http://localhost:8080
+      size: 128
+      bits: 4
+      precreation:
+        lists: 1
+        check-delay: 10s
+      prefetch:
+        threshold: 2
+        capacity: 4
+        on-underflow: delay
+      update-interval: 3s
+      list-lifetime: 15s
+      signer:
+        pkcs12:
+          keystore: <PATH>
+          password: <PASSWORD>
+    pidp:
+      api-key: 01cf58b6-3096-40ba-a6cc-37750288329f
+      issuer: http://localhost:8080
+      size: 128
+      bits: 1
+      final-status: 1
+      precreation:
+        lists: 1
+        check-delay: 10s
+      prefetch:
+        threshold: 16
+        capacity: 32
+        on-underflow: delay
+      update-interval: 10s
+      list-lifetime: 15s
+      signer:
+        pkcs12:
+          keystore: <PATH>
+          password: <PASSWORD>
+
+
+oid4vc:
+  issuer:
+    signer:
+      pkcs12:
+        keystore: <PATH>
+        password: <PASSWORD>
+
+spring:
+  docker:
+    compose:
+      skip:
+        in-tests: true
+  profiles:
+    active: postgres
+
+  mail:
+    host: ~
+    port: ~
+    username: ~
+    password: ~
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
